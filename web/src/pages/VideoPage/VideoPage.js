@@ -1,11 +1,14 @@
 import VideosLayout from 'src/layouts/VideosLayout'
 import VideoCell from 'src/components/VideoCell'
+import StandardLayout from 'src/layouts/StandardLayout/StandardLayout'
 
 const VideoPage = ({ id }) => {
   return (
-    <VideosLayout>
-      <VideoCell id={id} />
-    </VideosLayout>
+    <StandardLayout>
+      <VideosLayout>
+        <VideoCell id={id} />
+      </VideosLayout>
+    </StandardLayout>
   )
 }
 

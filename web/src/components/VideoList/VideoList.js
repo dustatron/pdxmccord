@@ -1,60 +1,24 @@
+import { useContext } from 'react'
 import { Grid, Image } from 'semantic-ui-react'
-const VideoList = ({ handleSelected }) => {
+import { SelectedUpdateContext } from 'src/context/SelectedContext'
+
+const VideoList = ({ videos }) => {
+  const updateSelected = useContext(SelectedUpdateContext)
   return (
     <>
-      <Grid.Column>
-        <Image
-          src="/image.png"
-          size="small"
-          onClick={handleSelected}
-          name="https://www.youtube.com/watch?v=CHO316LKnZw"
-        />
-      </Grid.Column>
-      <Grid.Column>
-        <Image
-          src="/image.png"
-          size="small"
-          onClick={handleSelected}
-          name="https://www.youtube.com/watch?v=-2TTTNTcQ_8&ab_channel=JSFILMZ"
-        />
-      </Grid.Column>
-      <Grid.Column>
-        <Image src="/image.png" size="small" />
-      </Grid.Column>
+      {videos &&
+        videos.map((vid) => (
+          <Grid.Column key={vid.id}>
+            <h2>{vid.title}</h2>
 
-      <Grid.Column>
-        <Image
-          src="/image.png"
-          size="small"
-          onClick={handleSelected}
-          name="https://www.youtube.com/watch?v=IQAZ28doTXY&ab_channel=LearnColorGrading"
-        />
-      </Grid.Column>
-      <Grid.Column>
-        <Image src="/image.png" size="small" />
-      </Grid.Column>
-      <Grid.Column>
-        <Image src="/image.png" size="small" />
-      </Grid.Column>
-      <Grid.Column>
-        <Image
-          src="/image.png"
-          size="small"
-          onClick={handleSelected}
-          name="https://vimeo.com/472409971"
-        />
-      </Grid.Column>
-      <Grid.Column>
-        <Image src="/image.png" size="small" />
-      </Grid.Column>
-      <Grid.Column>
-        <Image
-          src="/image.png"
-          size="small"
-          onClick={handleSelected}
-          name="https://vimeo.com/474031157"
-        />
-      </Grid.Column>
+            <Image
+              src={vid.img}
+              size="small"
+              onClick={updateSelected}
+              name={vid.link}
+            />
+          </Grid.Column>
+        ))}
     </>
   )
 }

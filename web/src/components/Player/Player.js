@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { SelectedVideoContext } from 'src/context/SelectedContext'
 import ReactPlayer from 'react-player/lazy'
 import { Button } from 'semantic-ui-react'
 
@@ -21,8 +22,9 @@ const initialState = {
 }
 
 //////// PLAYER CONTROLS ////////////
-const Player = ({ video }) => {
+const Player = () => {
   const [prefs, setPrefs] = useState(initialState)
+  const currentVideo = useContext(SelectedVideoContext) //Update selectedVideoContext
 
   // This is the placeholder for the player object.
   // The ReactPlayer will return this object on load with ref function.
@@ -36,13 +38,11 @@ const Player = ({ video }) => {
   }
 
   const handlePlay = () => {
-    console.log('onPlay')
     const setPlayToTrue = { ...prefs, playing: true }
     setPrefs(setPlayToTrue)
   }
 
   const handlePause = () => {
-    console.log('handlePause')
     const setPlayToTrue = { ...prefs, playing: false }
     setPrefs(setPlayToTrue)
   }
@@ -50,7 +50,6 @@ const Player = ({ video }) => {
   const handleVolumeChange = (e) => {
     const newPrefs = { ...prefs, volume: parseFloat(e.target.value) }
     setPrefs(newPrefs)
-    console.log('change volume', e.target.value)
   }
 
   const handleToggleLoop = () => {
@@ -68,7 +67,6 @@ const Player = ({ video }) => {
     if (!prefs.seeking) {
       const newPrefs = { ...prefs, ...progress }
       setPrefs(newPrefs)
-      console.log('handleProgress', progress, 'state', prefs)
     }
   }
 
@@ -79,7 +77,6 @@ const Player = ({ video }) => {
   }
 
   const handleSeekChange = (e) => {
-    console.log('seek', parseFloat(e.target.value))
     const newPrefs = { ...prefs, played: parseFloat(e.target.value) }
     thisPlayer.seekTo(parseFloat(e.target.value))
     setPrefs(newPrefs)
@@ -92,7 +89,6 @@ const Player = ({ video }) => {
 
   /////////// CONTROLS ///////////////////
   const handleToggleControls = () => {
-    console.log('handle Control', prefs.controls)
     const newPrefs = { ...prefs, controls: !prefs.controls }
     setPrefs(newPrefs)
   }
@@ -145,7 +141,7 @@ const Player = ({ video }) => {
           className="react-player"
           // width="100%"
           // height="100%"
-          url={video}
+          url={currentVideo}
           pip={pip}
           playing={playing}
           controls={controls}
