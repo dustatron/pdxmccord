@@ -1,7 +1,7 @@
 datasource DS {
   // optionally set multiple providers
   // example: provider = ["sqlite", "postgresql"]
-  provider = "sqlite"
+  provider = ["sqlite", "postgresql"]
   url = "***"
 }
 
@@ -11,7 +11,7 @@ generator client {
 }
 
 
-model Video {
+model video {
   id         Int     @id @default(autoincrement())
   title      String  @unique
   link       String

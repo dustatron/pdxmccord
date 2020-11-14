@@ -2,12 +2,34 @@
   "version": "0.3.14-fixed",
   "steps": [
     {
+      "tag": "CreateSource",
+      "source": "DS"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Source",
+        "source": "DS"
+      },
+      "argument": "provider",
+      "value": "[\"sqlite\", \"postgresql\"]"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Source",
+        "source": "DS"
+      },
+      "argument": "url",
+      "value": "\"***\""
+    },
+    {
       "tag": "CreateModel",
-      "model": "Video"
+      "model": "video"
     },
     {
       "tag": "CreateField",
-      "model": "Video",
+      "model": "video",
       "field": "id",
       "type": "Int",
       "arity": "Required"
@@ -17,7 +39,7 @@
       "location": {
         "path": {
           "tag": "Field",
-          "model": "Video",
+          "model": "video",
           "field": "id"
         },
         "directive": "id"
@@ -28,7 +50,7 @@
       "location": {
         "path": {
           "tag": "Field",
-          "model": "Video",
+          "model": "video",
           "field": "id"
         },
         "directive": "default"
@@ -40,7 +62,7 @@
         "tag": "Directive",
         "path": {
           "tag": "Field",
-          "model": "Video",
+          "model": "video",
           "field": "id"
         },
         "directive": "default"
@@ -50,7 +72,7 @@
     },
     {
       "tag": "CreateField",
-      "model": "Video",
+      "model": "video",
       "field": "title",
       "type": "String",
       "arity": "Required"
@@ -60,7 +82,7 @@
       "location": {
         "path": {
           "tag": "Field",
-          "model": "Video",
+          "model": "video",
           "field": "title"
         },
         "directive": "unique"
@@ -68,35 +90,35 @@
     },
     {
       "tag": "CreateField",
-      "model": "Video",
+      "model": "video",
       "field": "link",
       "type": "String",
       "arity": "Required"
     },
     {
       "tag": "CreateField",
-      "model": "Video",
+      "model": "video",
       "field": "img",
       "type": "String",
       "arity": "Optional"
     },
     {
       "tag": "CreateField",
-      "model": "Video",
+      "model": "video",
       "field": "type",
       "type": "String",
       "arity": "Optional"
     },
     {
       "tag": "CreateField",
-      "model": "Video",
+      "model": "video",
       "field": "body",
       "type": "String",
       "arity": "Required"
     },
     {
       "tag": "CreateField",
-      "model": "Video",
+      "model": "video",
       "field": "createdAt",
       "type": "DateTime",
       "arity": "Required"
@@ -106,7 +128,7 @@
       "location": {
         "path": {
           "tag": "Field",
-          "model": "Video",
+          "model": "video",
           "field": "createdAt"
         },
         "directive": "default"
@@ -118,17 +140,13 @@
         "tag": "Directive",
         "path": {
           "tag": "Field",
-          "model": "Video",
+          "model": "video",
           "field": "createdAt"
         },
         "directive": "default"
       },
       "argument": "",
       "value": "now()"
-    },
-    {
-      "tag": "DeleteModel",
-      "model": "video"
     }
   ]
 }
