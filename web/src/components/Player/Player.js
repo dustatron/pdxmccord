@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react'
 import { SelectedVideoContext } from 'src/context/SelectedContext'
 import ReactPlayer from 'react-player/lazy'
-import { Button } from 'semantic-ui-react'
+import { Button, Grid } from 'semantic-ui-react'
 
 const initialState = {
   url: null,
@@ -134,13 +134,13 @@ const Player = () => {
     playedSeconds,
   } = prefs
   return (
-    <>
-      <div>
+    <Grid.Row columns={2} centered>
+      <Grid.Column width={12}>
         <ReactPlayer
           ref={ref}
           className="react-player"
-          // width="100%"
-          // height="100%"
+          width="auto"
+          height="40rem"
           url={currentVideo}
           pip={pip}
           playing={playing}
@@ -163,10 +163,10 @@ const Player = () => {
           onProgress={handleProgress}
           onDuration={handleDuration}
         />
-      </div>
+      </Grid.Column>
 
       {/* ////////// Buttons  //////////////// */}
-      <div>
+      <Grid.Column width={3}>
         <div>
           <h2>Progress</h2>
           <p>Seconds : {getTime(playedSeconds)}</p>
@@ -221,9 +221,8 @@ const Player = () => {
             {playing ? 'STOP' : 'PLAY'}
           </Button>
         </div>
-      </div>
-      <div></div>
-    </>
+      </Grid.Column>
+    </Grid.Row>
   )
 }
 

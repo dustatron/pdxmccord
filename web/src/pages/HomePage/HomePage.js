@@ -9,11 +9,10 @@ import StandardLayout from 'src/layouts/StandardLayout/StandardLayout'
 const HomePage = () => {
   return (
     <StandardLayout>
-      <Grid centered>
-        <Grid.Row>
-          <Player />
-        </Grid.Row>
-        <Grid.Row centered columns={4}>
+      <Grid>
+        <Player />
+
+        <Grid.Row columns={4}>
           <VideoListCell />
         </Grid.Row>
       </Grid>
