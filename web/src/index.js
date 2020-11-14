@@ -5,6 +5,7 @@ import 'semantic-ui-css/semantic.min.css'
 
 import Routes from 'src/Routes'
 
+import './scaffold.css'
 import './index.css'
 
 ReactDOM.render(
