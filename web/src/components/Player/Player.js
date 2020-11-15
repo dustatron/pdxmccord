@@ -1,7 +1,11 @@
 import { useState, useContext } from 'react'
 import { SelectedVideoContext } from 'src/context/SelectedContext'
 import ReactPlayer from 'react-player/lazy'
-import { Button, Grid } from 'semantic-ui-react'
+import { Button, Grid, Dimmer, Loader } from 'semantic-ui-react'
+import {
+  useLoadingState,
+  useLoadingUpdateState,
+} from 'src/context/SelectedContext'
 
 const initialState = {
   url: null,
@@ -24,7 +28,10 @@ const initialState = {
 //////// PLAYER CONTROLS ////////////
 const Player = () => {
   const [prefs, setPrefs] = useState(initialState)
+  // const [loading, setLoading] = useState(true)
   const currentVideo = useContext(SelectedVideoContext) //Update selectedVideoContext
+  const loading = useLoadingState()
+  const setLoading = useLoadingUpdateState()
 
   // This is the placeholder for the player object.
   // The ReactPlayer will return this object on load with ref function.
@@ -136,6 +143,9 @@ const Player = () => {
   return (
     <Grid.Row columns={2} centered>
       <Grid.Column width={12}>
+        <Dimmer active={loading}>
+          <Loader content="Loading" />
+        </Dimmer>
         <ReactPlayer
           ref={ref}
           className="react-player"
@@ -150,7 +160,7 @@ const Player = () => {
           playbackRate={playbackRate}
           volume={volume}
           muted={muted}
-          onReady={() => console.log('onReady')}
+          onReady={() => setLoading(false)}
           onStart={() => console.log('onStart')}
           onPlay={handlePlay}
           onEnablePIP={handleEnablePIP}

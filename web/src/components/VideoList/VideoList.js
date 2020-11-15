@@ -1,8 +1,10 @@
 import { useContext } from 'react'
 import { Grid, Image } from 'semantic-ui-react'
 import { SelectedUpdateContext } from 'src/context/SelectedContext'
+import { useLoadingUpdateState } from 'src/context/SelectedContext'
 
 const VideoList = ({ videos }) => {
+  const updateLoading = useLoadingUpdateState()
   const updateSelected = useContext(SelectedUpdateContext)
   return (
     <>
@@ -14,7 +16,10 @@ const VideoList = ({ videos }) => {
             <Image
               src={vid.img}
               size="small"
-              onClick={updateSelected}
+              onClick={(e) => {
+                updateSelected(e)
+                updateLoading(true)
+              }}
               name={vid.link}
             />
           </Grid.Column>
