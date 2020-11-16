@@ -29,8 +29,8 @@ export const SelectedProvider = ({ children }) => {
     setActiveMenu(name)
   }
 
-  const handelUpdate = (e) => {
-    setSelected(e.target.name)
+  const handelUpdate = (link) => {
+    setSelected(link)
   }
 
   const handleUpdateLoading = (toggle = false) => {

@@ -1,0 +1,28 @@
+.player {
+  margin-top: 2rem;
+  background: #333;
+
+  &-controls {
+    color: white;
+
+    &-button {
+      display: none;
+      margin-top: 5px;
+    }
+  }
+
+  &-control-btn {
+    display: none;
+    padding-top: 5px;
+    text-align: center;
+
+  }
+}
+
+.hideThis {
+  display: none;
+  visibility: hidden;
+  height: 0;
+  width: 0;
+  overflow: hidden;
+}

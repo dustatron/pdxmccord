@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react'
 import { SelectedVideoContext } from 'src/context/SelectedContext'
 import ReactPlayer from 'react-player/lazy'
-import { Button, Grid, Dimmer, Loader } from 'semantic-ui-react'
+import { Button, Grid, Dimmer, Loader, Segment } from 'semantic-ui-react'
 import {
   useLoadingState,
   useLoadingUpdateState,
@@ -27,8 +27,8 @@ const initialState = {
 
 //////// PLAYER CONTROLS ////////////
 const Player = () => {
+  const [showControls, setShowControls] = useState(false)
   const [prefs, setPrefs] = useState(initialState)
-  // const [loading, setLoading] = useState(true)
   const currentVideo = useContext(SelectedVideoContext) //Update selectedVideoContext
   const loading = useLoadingState()
   const setLoading = useLoadingUpdateState()
@@ -125,8 +125,11 @@ const Player = () => {
     }
   }
 
-  /////// Deconstruct Values ///////
+  const handleControls = () => {
+    setShowControls(!showControls)
+  }
 
+  /////// Deconstruct Values ///////
   const {
     pip,
     playing,
@@ -140,9 +143,10 @@ const Player = () => {
     played,
     playedSeconds,
   } = prefs
+
   return (
-    <Grid.Row columns={2} centered>
-      <Grid.Column width={12}>
+    <Grid.Row columns={showControls ? 2 : 1} centered className="player">
+      <Grid.Column width={showControls ? 13 : 16} centered>
         <Dimmer active={loading}>
           <Loader content="Loading" />
         </Dimmer>
@@ -176,7 +180,11 @@ const Player = () => {
       </Grid.Column>
 
       {/* ////////// Buttons  //////////////// */}
-      <Grid.Column width={3}>
+      <Grid.Column
+        computer={showControls ? 3 : 1}
+        centered
+        className={`player-controls ${showControls ? '' : 'hideThis'}`}
+      >
         <div>
           <h2>Progress</h2>
           <p>Seconds : {getTime(playedSeconds)}</p>
@@ -231,6 +239,17 @@ const Player = () => {
             {playing ? 'STOP' : 'PLAY'}
           </Button>
         </div>
+      </Grid.Column>
+      <Grid.Column className="player-control-btn">
+        <Segment basic textAlign={'center'}>
+          <Button
+            textAlign="center"
+            className="player-control-btn-button"
+            onClick={handleControls}
+          >
+            Controls
+          </Button>
+        </Segment>
       </Grid.Column>
     </Grid.Row>
   )
