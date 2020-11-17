@@ -27,7 +27,6 @@ const initialState = {
 
 //////// PLAYER CONTROLS ////////////
 const Player = () => {
-  const [showControls, setShowControls] = useState(false)
   const [prefs, setPrefs] = useState(initialState)
   const currentVideo = useContext(SelectedVideoContext) //Update selectedVideoContext
   const loading = useLoadingState()
@@ -38,6 +37,7 @@ const Player = () => {
   let thisPlayer
 
   const ref = (player) => {
+    // eslint-disable-next-line
     thisPlayer = player
   }
 
