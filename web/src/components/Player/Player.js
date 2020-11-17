@@ -12,7 +12,7 @@ const initialState = {
   pip: false,
   seeking: false,
   playing: false,
-  controls: false,
+  controls: true,
   light: false,
   volume: 0.8,
   muted: false,
@@ -87,7 +87,7 @@ const Player = () => {
           ref={ref}
           className="player-video-player"
           width="90%"
-          height="30em"
+          height="40em"
           url={currentVideo}
           // pip={pip}
           playing={playing}

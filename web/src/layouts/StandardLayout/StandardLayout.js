@@ -57,7 +57,7 @@ const StandardLayout = ({ children }) => {
       </Modal>
 
       {/* /////////////// MENU  ////////// */}
-      <Menu pointing secondary>
+      <Menu pointing secondary inverted>
         <Link to={routes.home()}>
           <Menu.Item
             name="home"

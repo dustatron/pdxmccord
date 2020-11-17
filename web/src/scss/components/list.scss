@@ -11,12 +11,26 @@
     border-radius: 5px;
     width: 32%;
     height: 14em;
-    // border: 1px solid red;
+    margin-bottom: 10px;
     position: relative;
     &:not(:last-of-type) {
       margin-right: 10px;
     }
-    margin-bottom: 10px;
+
+    @include respond(tab-port) {
+      width: 100%;
+    }
+
+    &:hover {
+      transform: translateY(-5px) scale(1.02);
+      transition: all .2s ease-out;
+      z-index: 100;
+      box-shadow: -1px 5px 15px 1px #28282869;
+    }
+
+    &:active {
+      transform: translateY(2px) scale(0.99);
+    }
 
     &-title {
       position: absolute;
