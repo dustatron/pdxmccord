@@ -1,5 +1,7 @@
 import { useState, useContext } from 'react'
 import { SelectedVideoContext } from 'src/context/SelectedContext'
+import { SelectedUpdateContext } from 'src/context/SelectedContext'
+import { useListContext } from 'src/context/SelectedContext'
 import ReactPlayer from 'react-player/lazy'
 import { Grid, Dimmer, Loader } from 'semantic-ui-react'
 import {
@@ -29,8 +31,10 @@ const initialState = {
 const Player = () => {
   const [prefs, setPrefs] = useState(initialState)
   const currentVideo = useContext(SelectedVideoContext) //Update selectedVideoContext
+  const updateCurrentVideo = useContext(SelectedUpdateContext)
   const loading = useLoadingState()
   const setLoading = useLoadingUpdateState()
+  const ListContext = useListContext()
 
   // This is the placeholder for the player object.
   // The ReactPlayer will return this object on load with ref function.
@@ -71,6 +75,15 @@ const Player = () => {
     }
   }
 
+  const handleNext = () => {
+    const index = ListContext.findIndex((item) => item.link === currentVideo)
+    if (index + 1 >= ListContext.length) {
+      return updateCurrentVideo(ListContext[0].link)
+    }
+    console.log('next', ListContext, index)
+    return updateCurrentVideo(ListContext[index + 1].link)
+  }
+
   /////// Deconstruct Values ///////
   const { playing, controls, light, loop, playbackRate, volume, muted } = prefs
 
@@ -105,7 +118,7 @@ const Player = () => {
           onPause={handlePause}
           onBuffer={() => console.log('onBuffer')}
           onSeek={(e) => console.log('onSeek', e)}
-          onEnded={handleEnded}
+          onEnded={handleNext}
           onError={(e) => console.log('onError', e)}
           onProgress={handleProgress}
           // onDuration={handleDuration}
@@ -121,7 +134,7 @@ const Player = () => {
               <img src="img/pause.png" alt="pause" />
             </div>
           </button>
-          <button className="player-controls-grey--btn">
+          <button className="player-controls-grey--btn" onClick={handleNext}>
             <div className="triangle">
               <img src="img/next.png" alt="next" />
             </div>
