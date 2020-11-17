@@ -127,7 +127,7 @@ const Player = () => {
             </div>
           </button>
           <button
-            className="player-controls-grey--btn"
+            className={`player-controls-grey--btn ${prefs.loop ? 'green' : ''}`}
             onClick={handleToggleLoop}
           >
             <div className="triangle">

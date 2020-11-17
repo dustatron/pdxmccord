@@ -1,17 +1,22 @@
 import { useContext } from 'react'
 import { SelectedUpdateContext } from 'src/context/SelectedContext'
 import { useLoadingUpdateState } from 'src/context/SelectedContext'
+import { SelectedVideoContext } from 'src/context/SelectedContext'
 
 const VideoList = ({ videos }) => {
+  const currentVideo = useContext(SelectedVideoContext) //Update selectedVideoContext
   const updateLoading = useLoadingUpdateState()
   const updateSelected = useContext(SelectedUpdateContext)
+
   return (
     <div columns={3} className="list">
       {videos &&
         videos.map((vid) => (
           <div
             key={vid.id}
-            className="list-item"
+            className={`list-item ${
+              currentVideo === vid.link ? 'selected' : ''
+            }`}
             onClick={() => {
               updateSelected(vid.link)
               updateLoading(true)
