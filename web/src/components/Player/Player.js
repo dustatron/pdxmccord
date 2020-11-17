@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react'
 import { SelectedVideoContext } from 'src/context/SelectedContext'
 import ReactPlayer from 'react-player/lazy'
-import { Button, Grid, Dimmer, Loader, Segment } from 'semantic-ui-react'
+import { Grid, Dimmer, Loader } from 'semantic-ui-react'
 import {
   useLoadingState,
   useLoadingUpdateState,
@@ -37,12 +37,11 @@ const Player = () => {
   // The ReactPlayer will return this object on load with ref function.
   let thisPlayer
 
-  /////// PLAYING CONTROLS ///////////
-
-  const handlePlayPause = () => {
-    const newPref = { ...prefs, playing: !prefs.playing }
-    setPrefs(newPref)
+  const ref = (player) => {
+    thisPlayer = player
   }
+
+  /////// PLAYING CONTROLS ///////////
 
   const handlePlay = () => {
     const setPlayToTrue = { ...prefs, playing: true }
@@ -52,11 +51,6 @@ const Player = () => {
   const handlePause = () => {
     const setPlayToTrue = { ...prefs, playing: false }
     setPrefs(setPlayToTrue)
-  }
-
-  const handleVolumeChange = (e) => {
-    const newPrefs = { ...prefs, volume: parseFloat(e.target.value) }
-    setPrefs(newPrefs)
   }
 
   const handleToggleLoop = () => {
@@ -77,86 +71,25 @@ const Player = () => {
     }
   }
 
-  ///////////// SEEKING //////////////////
-  const handleSeekMouseDown = () => {
-    const newPrefs = { ...prefs, seeking: true }
-    setPrefs(newPrefs)
-  }
-
-  const handleSeekChange = (e) => {
-    const newPrefs = { ...prefs, played: parseFloat(e.target.value) }
-    thisPlayer.seekTo(parseFloat(e.target.value))
-    setPrefs(newPrefs)
-  }
-
-  const handleSeekMouseUp = () => {
-    const newPrefs = { ...prefs, seeking: false }
-    setPrefs(newPrefs)
-  }
-
-  /////////// CONTROLS ///////////////////
-  const handleToggleControls = () => {
-    const newPrefs = { ...prefs, controls: !prefs.controls }
-    setPrefs(newPrefs)
-  }
-
-  const handleEnablePIP = () => {
-    console.log('handleEnablePIP')
-  }
-
-  const handleDisablePIP = () => {
-    console.log('handleDisablePIP')
-  }
-
-  const handleDuration = () => {
-    console.log('handleDuration')
-  }
-
-  const ref = (player) => {
-    thisPlayer = player
-  }
-
-  const getTime = (seconds) => {
-    if (seconds > 60) {
-      const min = seconds / 60
-      return parseFloat(min).toFixed(2)
-    } else {
-      return `00:0${parseInt(seconds)}`
-    }
-  }
-
-  const handleControls = () => {
-    setShowControls(!showControls)
-  }
-
   /////// Deconstruct Values ///////
-  const {
-    pip,
-    playing,
-    controls,
-    light,
-    loop,
-    loaded,
-    playbackRate,
-    volume,
-    muted,
-    played,
-    playedSeconds,
-  } = prefs
+  const { playing, controls, light, loop, playbackRate, volume, muted } = prefs
 
   return (
-    <Grid.Row columns={showControls ? 2 : 1} centered className="player">
-      <Grid.Column width={showControls ? 13 : 16} centered>
+    <Grid.Row columns={16} centered className="player">
+      <Grid.Column width={16} centered>
+        {/* ///////////// SPINNER ////////////// */}
         <Dimmer active={loading}>
           <Loader content="Loading" />
         </Dimmer>
+
+        {/* /////////////////////// VIDEO PLAYER //////////////// */}
         <ReactPlayer
           ref={ref}
-          className="react-player"
-          width="auto"
-          height="40rem"
+          className="player-video-player"
+          width="90%"
+          height="30em"
           url={currentVideo}
-          pip={pip}
+          // pip={pip}
           playing={playing}
           controls={controls}
           light={light}
@@ -167,89 +100,41 @@ const Player = () => {
           onReady={() => setLoading(false)}
           onStart={() => console.log('onStart')}
           onPlay={handlePlay}
-          onEnablePIP={handleEnablePIP}
-          onDisablePIP={handleDisablePIP}
+          // onEnablePIP={handleEnablePIP}
+          // onDisablePIP={handleDisablePIP}
           onPause={handlePause}
           onBuffer={() => console.log('onBuffer')}
           onSeek={(e) => console.log('onSeek', e)}
           onEnded={handleEnded}
           onError={(e) => console.log('onError', e)}
           onProgress={handleProgress}
-          onDuration={handleDuration}
+          // onDuration={handleDuration}
         />
-      </Grid.Column>
-
-      {/* ////////// Buttons  //////////////// */}
-      <Grid.Column
-        computer={showControls ? 3 : 1}
-        centered
-        className={`player-controls ${showControls ? '' : 'hideThis'}`}
-      >
-        <div>
-          <h2>Progress</h2>
-          <p>Seconds : {getTime(playedSeconds)}</p>
-          <progress max={1} value={played} />
-        </div>
-        <div>
-          <h2>Loading</h2>
-          <progress max={1} value={loaded} />
-        </div>
-        <div> playbackRate: {playbackRate} </div>
-        <div> loop: {loop ? 'True' : ' False'} </div>
-        <div>
-          <h2>volume:</h2>
-          {parseInt(volume * 10)}
-          <input
-            type="range"
-            min={0}
-            max={1}
-            step="any"
-            value={volume}
-            onChange={handleVolumeChange}
-          />
-        </div>
-        <div>
-          {' '}
-          <h2>Controls</h2>
-          <Button primary onClick={handleToggleControls}>
-            {controls ? 'Yes' : 'No'}
-          </Button>
-        </div>
-        <div>
-          <h2>SEEKING</h2>
-          <input
-            type="range"
-            min={0}
-            max={0.999999}
-            step="any"
-            value={played}
-            onMouseDown={handleSeekMouseDown}
-            onChange={handleSeekChange}
-            onMouseUp={handleSeekMouseUp}
-          />
-        </div>
-        <div>
-          <h2>Looping</h2>
-          <Button onClick={handleToggleLoop}>{loop ? 'ON' : 'OFF'}</Button>
-        </div>
-
-        <div>
-          <h2>play</h2>
-          <Button default onClick={handlePlayPause}>
-            {playing ? 'STOP' : 'PLAY'}
-          </Button>
-        </div>
-      </Grid.Column>
-      <Grid.Column className="player-control-btn">
-        <Segment basic textAlign={'center'}>
-          <Button
-            textAlign="center"
-            className="player-control-btn-button"
-            onClick={handleControls}
+        <div className="player-controls">
+          <button className="player-controls-play" onClick={handlePlay}>
+            <div className="triangle">
+              <img src="img/play.png" alt="play" />
+            </div>
+          </button>
+          <button className="player-controls-grey--btn" onClick={handlePause}>
+            <div className="triangle">
+              <img src="img/pause.png" alt="pause" />
+            </div>
+          </button>
+          <button className="player-controls-grey--btn">
+            <div className="triangle">
+              <img src="img/next.png" alt="next" />
+            </div>
+          </button>
+          <button
+            className="player-controls-grey--btn"
+            onClick={handleToggleLoop}
           >
-            Controls
-          </Button>
-        </Segment>
+            <div className="triangle">
+              <img src="img/loop.png" alt="loop" />
+            </div>
+          </button>
+        </div>
       </Grid.Column>
     </Grid.Row>
   )

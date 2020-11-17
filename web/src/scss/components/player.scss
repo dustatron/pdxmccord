@@ -1,28 +1,70 @@
 .player {
   margin-top: 2rem;
-  background: #333;
+  background: #161616;
+  border-radius: 5px;
 
-  &-controls {
-    color: white;
 
-    &-button {
-      display: none;
-      margin-top: 5px;
+
+ &-video-player {
+   height: 40em;
+   width: auto;
+   margin: auto;
+ }
+
+ &-controls {
+   color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0;
+
+    &-play {
+      background-color: #E97368;
+      box-shadow: -1px 1px 0px 1px #86180E;
+      &:hover {
+        background-color: #f2887f;
+        box-shadow: -1px 5px 0px 1px #a0291e;
+      }
+
+      &:active {
+        box-shadow: -1px 1px 0px 1px #86180E;
+       }
     }
-  }
 
-  &-control-btn {
-    display: none;
-    padding-top: 5px;
-    text-align: center;
+    &-grey--btn {
+      background: #B5B6B9;
+      box-shadow: -1px 1px 0px 1px #464646;
+      &:hover {
+        background: #cacacd;
+        box-shadow: -1px 5px 0px 1px #6a6969;
+      }
 
-  }
+      &:active {
+        box-shadow: -1px 1px 0px 1px #686868;
+       }
+    }
+
+    button {
+     display: inline-block;
+     height: 3rem;
+     margin: 0 .2rem;
+     padding: 0 1.5rem;
+     border-radius: 2px;
+     border: none;
+     transition: all .3s ease;
+
+     &:hover {
+      transform: translateY(-5px);
+     }
+
+     &:active {
+      transform: translateY(2px);
+     }
+
+     &:focus { outline:0 !important; }
+
+   }
+ }
 }
 
-.hideThis {
-  display: none;
-  visibility: hidden;
-  height: 0;
-  width: 0;
-  overflow: hidden;
-}
+
