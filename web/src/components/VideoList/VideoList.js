@@ -11,28 +11,31 @@ const VideoList = ({ videos }) => {
   return (
     <div columns={3} className="list">
       {videos &&
-        videos.map((vid) => (
-          <div
-            key={vid.id}
-            className={`list-item ${
-              currentVideo === vid.link ? 'selected' : ''
-            }`}
-            onClick={() => {
-              updateSelected(vid.link)
-              updateLoading(true)
-            }}
-          >
-            <div className="list-item-title">
-              <span className="list-item-title-copy">{vid.title} </span>
+        videos
+          .slice()
+          .sort((a, b) => b.year - a.year)
+          .map((vid) => (
+            <div
+              key={vid.id}
+              className={`list-item ${
+                currentVideo === vid.link ? 'selected' : ''
+              }`}
+              onClick={() => {
+                updateSelected(vid.link)
+                updateLoading(true)
+              }}
+            >
+              <div className="list-item-title">
+                <span className="list-item-title-copy">{vid.title} </span>
+              </div>
+              <div className="list-item-img">
+                <img src={vid.img} alt={vid.title} />
+              </div>
+              <div className="list-item-year">
+                <span className="list-item-year-copy"> {vid.year} </span>
+              </div>
             </div>
-            <div className="list-item-img">
-              <img src={vid.img} alt={vid.title} />
-            </div>
-            <div className="list-item-year">
-              <span className="list-item-year-copy"> {vid.year} </span>
-            </div>
-          </div>
-        ))}
+          ))}
     </div>
   )
 }
