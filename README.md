@@ -25,3 +25,5 @@ yarn redwood dev
 **[React-Player](https://www.npmjs.com/package/react-player)**
 
 **[Semantic UI](https://react.semantic-ui.com/usage)**
+
+**[gist for getting video thumbnails](https://gist.github.com/silasrm/3e2807865df0422982978e332c9fe562)**

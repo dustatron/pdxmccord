@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
   Form,
   FormError,
@@ -7,7 +8,23 @@ import {
   Submit,
 } from '@redwoodjs/forms'
 
+import imgHelper from './imgHelper'
+
 const VideoForm = (props) => {
+  const [linkState, setLinkState] = useState(props.video?.link)
+  const [imgState, setImgState] = useState(props.video?.img)
+
+  const onLinkChange = (e) => {
+    setLinkState(e.target.value)
+    imgHelper(e.target.value)
+
+  }
+
+  const onImageChange = (e) => {
+    setImgState(e.target.value)
+    console.log('ImgState', imgState)
+  }
+
   const onSubmit = (data) => {
     props.onSave(data, props?.video?.id)
   }
@@ -47,10 +64,11 @@ const VideoForm = (props) => {
         </Label>
         <TextField
           name="link"
-          defaultValue={props.video?.link}
+          value={linkState}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
+          onChange={onLinkChange}
         />
         <FieldError name="link" className="rw-field-error" />
 
@@ -63,12 +81,16 @@ const VideoForm = (props) => {
         </Label>
         <TextField
           name="img"
-          defaultValue={props.video?.img}
+          value={imgState}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
+          onChange={onImageChange}
           validation={{ required: true }}
         />
         <FieldError name="img" className="rw-field-error" />
+        <div>
+          <img src="" alt="" />
+        </div>
 
         <Label
           name="year"
