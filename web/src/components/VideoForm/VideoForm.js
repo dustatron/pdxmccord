@@ -12,12 +12,17 @@ import imgHelper from './imgHelper'
 
 const VideoForm = (props) => {
   const [linkState, setLinkState] = useState(props.video?.link)
-  const [imgState, setImgState] = useState(props.video?.img)
+  const [imgState, setImgState] = useState(
+    props.video?.img ? props.video.img : null
+  )
 
-  const onLinkChange = (e) => {
+  const onLinkChange = async (e) => {
     setLinkState(e.target.value)
-    imgHelper(e.target.value)
-
+    const thumbnail = await imgHelper(e.target.value)
+    if (thumbnail) {
+      return setImgState(thumbnail)
+    }
+    setImgState(null)
   }
 
   const onImageChange = (e) => {
@@ -89,7 +94,10 @@ const VideoForm = (props) => {
         />
         <FieldError name="img" className="rw-field-error" />
         <div>
-          <img src="" alt="" />
+          <img
+            src={imgState ? imgState : '/img/placeholder.jpg'}
+            alt="thumbnail"
+          />
         </div>
 
         <Label
