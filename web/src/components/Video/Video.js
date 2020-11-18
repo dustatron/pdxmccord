@@ -11,13 +11,13 @@ const DELETE_VIDEO_MUTATION = gql`
   }
 `
 
-const jsonDisplay = (obj) => {
-  return (
-    <pre>
-      <code>{JSON.stringify(obj, null, 2)}</code>
-    </pre>
-  )
-}
+// const jsonDisplay = (obj) => {
+//   return (
+//     <pre>
+//       <code>{JSON.stringify(obj, null, 2)}</code>
+//     </pre>
+//   )
+// }
 
 const timeTag = (datetime) => {
   return (
@@ -27,9 +27,9 @@ const timeTag = (datetime) => {
   )
 }
 
-const checkboxInputTag = (checked) => {
-  return <input type="checkbox" checked={checked} disabled />
-}
+// const checkboxInputTag = (checked) => {
+//   return <input type="checkbox" checked={checked} disabled />
+// }
 
 const Video = ({ video }) => {
   const { addMessage } = useFlash()
@@ -74,8 +74,12 @@ const Video = ({ video }) => {
               <td>{video.link}</td>
             </tr>
             <tr>
-              <th>Img</th>
+              <th>Image</th>
               <td>{video.img}</td>
+            </tr>
+            <tr>
+              <th>Year</th>
+              <td>{video.year}</td>
             </tr>
             <tr>
               <th>Type</th>

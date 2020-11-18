@@ -59,7 +59,7 @@ const VideoForm = (props) => {
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Img
+          Image
         </Label>
         <TextField
           name="img"
@@ -69,6 +69,22 @@ const VideoForm = (props) => {
           validation={{ required: true }}
         />
         <FieldError name="img" className="rw-field-error" />
+
+        <Label
+          name="year"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Year
+        </Label>
+        <TextField
+          name="year"
+          defaultValue={props.video?.year}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
+        <FieldError name="year" className="rw-field-error" />
 
         <Label
           name="type"

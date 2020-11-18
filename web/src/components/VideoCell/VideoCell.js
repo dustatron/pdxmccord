@@ -7,8 +7,10 @@ export const QUERY = gql`
       title
       link
       img
+      year
       type
       body
+      year
       createdAt
     }
   }

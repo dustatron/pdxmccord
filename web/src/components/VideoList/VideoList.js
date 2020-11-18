@@ -29,7 +29,7 @@ const VideoList = ({ videos }) => {
               <img src={vid.img} alt={vid.title} />
             </div>
             <div className="list-item-year">
-              <span className="list-item-year-copy"> {vid.body} </span>
+              <span className="list-item-year-copy"> {vid.year} </span>
             </div>
           </div>
         ))}

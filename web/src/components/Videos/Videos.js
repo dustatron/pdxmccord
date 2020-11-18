@@ -21,9 +21,9 @@ const truncate = (text) => {
   return output
 }
 
-const jsonTruncate = (obj) => {
-  return truncate(JSON.stringify(obj, null, 2))
-}
+// const jsonTruncate = (obj) => {
+//   return truncate(JSON.stringify(obj, null, 2))
+// }
 
 const timeTag = (datetime) => {
   return (
@@ -33,9 +33,9 @@ const timeTag = (datetime) => {
   )
 }
 
-const checkboxInputTag = (checked) => {
-  return <input type="checkbox" checked={checked} disabled />
-}
+// const checkboxInputTag = (checked) => {
+//   return <input type="checkbox" checked={checked} disabled />
+// }
 
 const VideosList = ({ videos }) => {
   const { addMessage } = useFlash()
@@ -64,7 +64,8 @@ const VideosList = ({ videos }) => {
             <th>Id</th>
             <th>Title</th>
             <th>Link</th>
-            <th>Img</th>
+            <th>Image</th>
+            <th>Year</th>
             <th>Type</th>
             <th>Body</th>
             <th>Created at</th>
@@ -78,6 +79,7 @@ const VideosList = ({ videos }) => {
               <td>{truncate(video.title)}</td>
               <td>{truncate(video.link)}</td>
               <td>{truncate(video.img)}</td>
+              <td>{truncate(video.year)}</td>
               <td>{truncate(video.type)}</td>
               <td>{truncate(video.body)}</td>
               <td>{timeTag(video.createdAt)}</td>

@@ -9,6 +9,7 @@ export const QUERY = gql`
       title
       link
       img
+      year
       type
       body
       createdAt
@@ -22,6 +23,7 @@ const UPDATE_VIDEO_MUTATION = gql`
       title
       link
       img
+      year
       type
       body
       createdAt

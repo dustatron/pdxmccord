@@ -63,10 +63,10 @@ const Player = () => {
   }
 
   ////////////// PLAY STATE /////////////////
-  const handleEnded = () => {
-    const newPrefs = { ...prefs, playing: prefs.loop }
-    setPrefs(newPrefs)
-  }
+  // const handleEnded = () => {
+  //   const newPrefs = { ...prefs, playing: prefs.loop }
+  //   setPrefs(newPrefs)
+  // }
 
   const handleProgress = (progress) => {
     if (!prefs.seeking) {

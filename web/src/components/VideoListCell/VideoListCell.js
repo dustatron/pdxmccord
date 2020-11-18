@@ -14,6 +14,7 @@ export const QUERY = gql`
       body
       createdAt
       type
+      year
     }
   }
 `

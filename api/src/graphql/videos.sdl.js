@@ -5,7 +5,8 @@ export const schema = gql`
     link: String!
     img: String
     type: String
-    body: String!
+    body: String
+    year: String
     createdAt: DateTime!
   }
 
@@ -19,7 +20,8 @@ export const schema = gql`
     link: String!
     img: String
     type: String
-    body: String!
+    body: String
+    year: String
   }
 
   input UpdateVideoInput {
@@ -28,6 +30,7 @@ export const schema = gql`
     img: String
     type: String
     body: String
+    year: String
   }
 
   type Mutation {
