@@ -23,8 +23,7 @@ export const useListContext = () => {
 }
 
 export const SelectedProvider = ({ children }) => {
-  const initialState =
-    'https://www.youtube.com/watch?v=7Y3MMGYzNIM&ab_channel=DustyMcCord'
+  const initialState = 'https://vimeo.com/472409971'
 
   const [selected, setSelected] = useState(initialState)
   const [activeMenu, setActiveMenu] = useState('home')

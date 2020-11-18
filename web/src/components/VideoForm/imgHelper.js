@@ -22,7 +22,7 @@ const imgHelper = async (link) => {
         endOfId > 0 ? endOfId : startOfId.length
       )
 
-      const thumbnailLink = `https://img.youtube.com/vi/${vidId.trim()}/mqdefault.jpg`
+      const thumbnailLink = `https://img.youtube.com/vi/${vidId.trim()}/maxresdefault.jpg`
       return thumbnailLink
     }
     return false
