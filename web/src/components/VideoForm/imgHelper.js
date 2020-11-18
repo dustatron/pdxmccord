@@ -6,7 +6,7 @@
 
 // video example
 // returns json
-//http://vimeo.com/api/v2/video/474031157.json
+//https://vimeo.com/api/v2/video/474031157.json
 //https://vimeo.com/474031157
 
 const imgHelper = async (link) => {
@@ -30,7 +30,7 @@ const imgHelper = async (link) => {
     const vidId = link.split('/')[3].trim()
     try {
       const response = await fetch(
-        `http://vimeo.com/api/v2/video/${vidId}.json`
+        `https://vimeo.com/api/v2/video/${vidId}.json`
       )
       const json = await response.json()
       const thumbnailLink = await json[0]['thumbnail_large']
