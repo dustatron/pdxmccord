@@ -93,7 +93,7 @@ const VideoForm = (props) => {
           validation={{ required: true }}
         />
         <FieldError name="img" className="rw-field-error" />
-        <div>
+        <div className="video-form-img">
           <img
             src={imgState ? imgState : '/img/placeholder.jpg'}
             alt="thumbnail"
