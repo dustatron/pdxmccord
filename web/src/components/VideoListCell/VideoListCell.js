@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import VideoList from 'src/components/VideoList'
-import { Dimmer, Loader, Segment } from 'semantic-ui-react'
+import { Grid, Loader } from 'semantic-ui-react'
 
 import { ListUpdateContext } from 'src/context/SelectedContext'
 
@@ -20,13 +20,11 @@ export const QUERY = gql`
 `
 
 export const Loading = () => (
-  <>
-    <Segment>
-      <Dimmer active>
-        <Loader>Loading</Loader>
-      </Dimmer>
-    </Segment>
-  </>
+  <Grid.Row className="list-spinner">
+    <Loader active inverted size="massive">
+      Loading
+    </Loader>
+  </Grid.Row>
 )
 
 export const Empty = () => (

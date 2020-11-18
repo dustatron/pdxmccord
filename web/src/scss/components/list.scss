@@ -78,6 +78,15 @@
 
   }
 
+  &-spinner {
+    margin-top: 2em;
+    width: 100vw;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
 }
 
 .selected {
