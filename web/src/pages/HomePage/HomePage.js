@@ -4,8 +4,6 @@ import { Grid } from 'semantic-ui-react'
 
 import StandardLayout from 'src/layouts/StandardLayout/StandardLayout'
 
-// import { Button } from 'semantic-ui-react'
-
 const HomePage = () => {
   return (
     <StandardLayout>

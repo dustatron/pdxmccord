@@ -14,6 +14,7 @@ const Routes = () => {
   return (
     <SelectedProvider>
       <Router>
+        <Route path="/games" page={GamesPage} name="games" />
         <Route path="/" page={HomePage} name="home" />
         <Route notfound page={NotFoundPage} />
         <Private unauthenticated="home">

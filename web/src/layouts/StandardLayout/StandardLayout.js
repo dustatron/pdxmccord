@@ -13,7 +13,6 @@ const StandardLayout = ({ children }) => {
   const { logIn, isAuthenticated, logOut, currentUser } = useAuth()
 
   const handleItemClick = (e, { name }) => {
-    console.log('name', name)
     setActiveItem(name)
   }
 
@@ -67,6 +66,16 @@ const StandardLayout = ({ children }) => {
             PDX McCord
           </Menu.Item>
         </Link>
+        <Link to={routes.games()}>
+          <Menu.Item
+            name="games"
+            active={activeItem === 'games'}
+            onClick={handleItemClick}
+          >
+            Games
+          </Menu.Item>
+        </Link>
+
         {isAuthenticated && (
           <Link to={routes.videos()}>
             <Menu.Item
